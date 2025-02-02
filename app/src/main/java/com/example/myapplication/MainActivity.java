@@ -29,11 +29,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         DatabaseReference usuarios = referencia.child("usuarios");
-
+        DatabaseReference produtos = referencia.child("produtos");
         Usuario usuario = new Usuario();
         usuario.setNome("Jamilon");
         usuario.setSobrenome("");
         usuario.setIdade(30);
+
+        Produtos produto = new Produtos();
+        produto.setDescricao("Nexus");
+        produto.setMarca("LG");
+        produto.setPreco(99.9);
+
+        produtos.child("001").setValue(produto);
 
         usuarios.child("001").setValue("usuarios");
 
