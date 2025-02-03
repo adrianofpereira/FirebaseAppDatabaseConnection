@@ -38,11 +38,56 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        DatabaseReference usuarios = referencia.child("usuarios");
+
+        DatabaseReference usuarioPesquisa  = usuarios.child("uyfxGhhKBgb26YYqQZXy4LLLwkm2");
+
+        usuarioPesquisa.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Usuario dadosUsuario = snapshot.getValue(Usuario.class);
+                    Log.i("Dados usuario", "nome" + dadosUsuario.getNome()+ "idade: " + dadosUsuario.getIdade());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        /*
+        //Salvar dados do usuário no Firebase
+        Usuario usuario = new Usuario();
+        usuario.setNome("Jose Renato");
+        usuario.setSobrenome("Silva");
+        usuario.setIdade(31);
+
+        usuarios.push().setValue(usuario);
+
+         */
+
+        /*
+        //Deslogar Usuário
+        usuario.signOut();
+
+        //Logar Usuário
+        usuario.signInWithEmailAndPassword("jamilton@gmail.com","ja12345")
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Log.i("SignIn","Sucesso ao Logar Usuário");
+                        }else {
+                            Log.i("signIn","Erro ao Logar Usuário");
+                        }
+                    }
+                });
+
+
         //Verifica se o usuário está logado
         if(usuario.getCurrentUser() !=null){
-            Log.i("CreateUser","Usuário Logado");
+            Log.i("CurrentUser","Usuário Logado");
         }else{
-            Log.i("CreateUser","Usuário não Logado");
+            Log.i("CurrentUser","Usuário não Logado");
         }
 
         //Cadastro de Usuario
@@ -51,14 +96,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Log.i("CreateUser","Sucesso ao Cadastrar Uusário");
+                            Log.i("CreateUser","Sucesso ao Cadastrar Usuário");
                         }else {
-                            Log.i("CreateUser","Erro ao Cadastrar Uusário");
+                            Log.i("CreateUser","Erro ao Cadastrar Usuário");
                         }
                     }
                 });
 
-        DatabaseReference usuarios = referencia.child("usuarios");
+        DatabaseReference usuarios1 = referencia.child("usuarios");
         DatabaseReference produtos = referencia.child("produtos");
 
         usuarios.addValueEventListener(new ValueEventListener() {
@@ -75,9 +120,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Salvar dados do usuário no Firebase
         Usuario usuario = new Usuario();
-        usuario.setNome("Jamilon");
-        usuario.setSobrenome("");
-        usuario.setIdade(30);
+        usuario.setNome("Jose Renato");
+        usuario.setSobrenome("Silva");
+        usuario.setIdade(31);
+
 
         Produtos produto = new Produtos();
         produto.setDescricao("Nexus");
@@ -87,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
         produtos.child("001").setValue(produto);
 
         usuarios.child("001").setValue("usuarios");
+
+
+
+         */
 
     }
 }
