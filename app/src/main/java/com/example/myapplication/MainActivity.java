@@ -37,6 +37,22 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        //Deslogar Usuário
+        usuario.signOut();
+
+        //Logar Usuário
+        usuario.signInWithEmailAndPassword("jamilton@gmail.com","ja12345")
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Log.i("SignIn","Sucesso ao Logar Usuário");
+                        }else {
+                            Log.i("signIn","Erro ao Logar Usuário");
+                        }
+                    }
+                });
+
 
         DatabaseReference usuarios = referencia.child("usuarios");
 
